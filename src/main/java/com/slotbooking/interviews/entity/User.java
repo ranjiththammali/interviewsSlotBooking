@@ -22,6 +22,9 @@ public class User {
     @Column(name = "email",unique = true,nullable = false,updatable = false)
     private String email;
 
+    @Column(name = "phone_number",unique = true,nullable = false,updatable = false)
+    private String phoneNumber;
+
     @OneToOne(mappedBy = "user")
     private Hrs hrs;
 }
