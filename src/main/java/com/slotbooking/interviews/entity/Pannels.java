@@ -1,9 +1,12 @@
 package com.slotbooking.interviews.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.Set;
@@ -11,6 +14,10 @@ import java.util.Set;
 @Builder
 @Data
 @Entity
+@JsonInclude(JsonInclude.Include.NON_NULL)
+
+@NoArgsConstructor
+@AllArgsConstructor
 public class Pannels {
 
     @Id
@@ -19,10 +26,10 @@ public class Pannels {
     @Column(name = "panel_name",unique = true,nullable = false)
     private String panelName;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     private Set<Courses> courses;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Hrs hrs;
 
 }
