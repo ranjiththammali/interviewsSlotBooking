@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Set;
 @Builder
 @Data
@@ -26,8 +27,13 @@ public class Hrs {
     @Column(name = "hr_name",unique = true,nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "hrs",fetch = FetchType.LAZY)
-    private Set<Pannels> pannels;
+
+  /*  @OneToMany(mappedBy = "hrs", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
+    private List<Pannels> panels;*/
+
+
+
+
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id") // Foreign key column

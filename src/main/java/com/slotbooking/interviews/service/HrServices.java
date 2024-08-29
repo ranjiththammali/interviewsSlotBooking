@@ -10,4 +10,6 @@ public interface HrServices {
     List<Hrs> getHrList();
 
     Hrs addHrs(HrsDto hrs);
+
+    Hrs addHrsAndPannel(HrsDto hrs);
 }

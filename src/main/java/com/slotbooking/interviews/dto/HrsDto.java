@@ -5,4 +5,5 @@ import lombok.Data;
 @Data
 public class HrsDto {
     private String name;
+    private  String pannelName;
 }

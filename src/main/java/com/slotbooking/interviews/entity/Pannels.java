@@ -29,7 +29,7 @@ public class Pannels {
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Courses> courses;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Hrs hrs;
-
+  /*  @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "hr_id")
+    private Hrs hrs;*/
 }

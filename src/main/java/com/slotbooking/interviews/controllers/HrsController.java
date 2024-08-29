@@ -30,4 +30,10 @@ public class HrsController {
         Hrs savedHrs = hrServices.addHrs(hrs);
         return new ResponseEntity<>(savedHrs, HttpStatus.CREATED);
     }
+
+    @PostMapping("/hrs/pannel")
+    public ResponseEntity<?> addHrsAndPannel(@RequestBody HrsDto hrs) {
+        Hrs savedHrs = hrServices.addHrsAndPannel(hrs);
+        return new ResponseEntity<>(savedHrs, HttpStatus.CREATED);
+    }
 }

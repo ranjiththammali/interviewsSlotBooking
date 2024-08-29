@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User addUser(UserDto userDto) {
 
-        User use=User.builder().email(userDto.getEmail()).username(userDto.getUsername()).build();
+        User use=User.builder().email(userDto.getEmail()).username(userDto.getUsername()).phoneNumber(userDto.getPhoneNumber()).build();
 
         return userRepository.save(use);
     }
