@@ -10,6 +10,7 @@ import com.slotbooking.interviews.service.SlotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -53,8 +54,17 @@ public class SlotServiceImpl implements SlotService {
           LocalDateTime startTime = LocalDateTime.parse(dateTimeString, formatter);
           LocalDateTime endTime = LocalDateTime.parse(endTimeString, formatter);
 
-          Slot slot=Slot.builder().startTime(startTime).endTime(endTime).day(slotDto.getDay()).user(user.get()).panel(pannel.get()).hrs(hrs.get()).build();
-          return slotRepository.save(slot);
+          Duration duration = Duration.between(startTime, endTime);
+          if (duration.toHours() <= 1 && duration.toMinutes() % 60 <= 30) {
+              Slot slot=Slot.builder().startTime(startTime).endTime(endTime).day(slotDto.getDay()).user(user.get()).panel(pannel.get()).hrs(hrs.get()).build();
+              return slotRepository.save(slot);
+          } else {
+              System.out.println("The difference is more than 1 hour and 30 minutes.");
+              return new Slot();
+          }
+
+
+
       }
        return new Slot();
     }

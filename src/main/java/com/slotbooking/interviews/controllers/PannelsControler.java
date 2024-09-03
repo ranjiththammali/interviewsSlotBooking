@@ -3,6 +3,7 @@ package com.slotbooking.interviews.controllers;
 import com.slotbooking.interviews.dto.PannelCourseMapDto;
 import com.slotbooking.interviews.dto.PannelsDto;
 import com.slotbooking.interviews.entity.Pannels;
+import com.slotbooking.interviews.entity.Slot;
 import com.slotbooking.interviews.service.PannelsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,12 @@ public class PannelsControler {
     @PostMapping("/pannels/courses")
     public ResponseEntity<?> mapPannelsAndCourse(@RequestBody PannelCourseMapDto pannels) {
         Pannels savedPannels = pannelsService.mapPannelsAndCourse(pannels);
+        return new ResponseEntity<>(savedPannels, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/pannels/status")
+    public ResponseEntity<?> pannelsUpdateStatus(@RequestBody PannelsDto pannels) {
+        Slot savedPannels = pannelsService.pannelsUpdateStatus(pannels);
         return new ResponseEntity<>(savedPannels, HttpStatus.CREATED);
     }
 }

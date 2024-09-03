@@ -26,6 +26,10 @@ public class Slot {
     private LocalDateTime endTime;   // Timestamp field
     private String day;
 
+    private Boolean interviewDone;
+
+    private String selection ;
+
     @ManyToOne
     private Pannels panel;
     @ManyToOne

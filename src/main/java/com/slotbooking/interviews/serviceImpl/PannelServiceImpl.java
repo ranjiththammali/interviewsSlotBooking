@@ -4,8 +4,10 @@ import com.slotbooking.interviews.dto.PannelCourseMapDto;
 import com.slotbooking.interviews.dto.PannelsDto;
 import com.slotbooking.interviews.entity.Courses;
 import com.slotbooking.interviews.entity.Pannels;
+import com.slotbooking.interviews.entity.Slot;
 import com.slotbooking.interviews.repository.CoursesRepository;
 import com.slotbooking.interviews.repository.PannelsRepository;
+import com.slotbooking.interviews.repository.SlotRepository;
 import com.slotbooking.interviews.service.PannelsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,9 @@ public class PannelServiceImpl implements PannelsService {
 
     @Autowired
     CoursesRepository  coursesRepository;
+
+    @Autowired
+    SlotRepository slotRepository;
     @Override
     public List<Pannels> getPannels() {
         return pannelsRepository.findAll();
@@ -65,5 +70,24 @@ public class PannelServiceImpl implements PannelsService {
        else{
            return null;
         }
+    }
+
+    @Override
+    public Slot pannelsUpdateStatus(PannelsDto pannels) {
+
+       Optional<Pannels> pan= pannelsRepository.findByPanelName(pannels.getPanelName());
+       if(pan.isPresent()){
+
+           Optional<Slot> slot=slotRepository.findByPanel(pan.get());
+           if(slot.isPresent()){
+               Slot slo=slot.get();
+                slo.setInterviewDone(pannels.getInterview());
+               slo.setSelection(pannels.getSelection());
+             return   slotRepository.save(slo);
+           }
+
+
+       }
+        return null;
     }
 }
