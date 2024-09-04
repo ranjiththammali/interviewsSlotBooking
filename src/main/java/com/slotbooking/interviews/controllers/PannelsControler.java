@@ -5,6 +5,7 @@ import com.slotbooking.interviews.dto.PannelsDto;
 import com.slotbooking.interviews.entity.Pannels;
 import com.slotbooking.interviews.entity.Slot;
 import com.slotbooking.interviews.service.PannelsService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +38,7 @@ public class PannelsControler {
     }
 
     @PutMapping("/pannels/status")
-    public ResponseEntity<?> pannelsUpdateStatus(@RequestBody PannelsDto pannels) {
+    public ResponseEntity<?> pannelsUpdateStatus(@Valid @RequestBody PannelsDto pannels) {
         Slot savedPannels = pannelsService.pannelsUpdateStatus(pannels);
         return new ResponseEntity<>(savedPannels, HttpStatus.CREATED);
     }

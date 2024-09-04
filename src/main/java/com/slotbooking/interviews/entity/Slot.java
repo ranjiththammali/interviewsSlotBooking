@@ -10,30 +10,29 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Entity
 @JsonInclude(JsonInclude.Include.NON_NULL)
-
-@NoArgsConstructor
-@AllArgsConstructor
 public class Slot {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime startTime; // Timestamp field
-    private LocalDateTime endTime;   // Timestamp field
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private String day;
-
     private Boolean interviewDone;
-
-    private String selection ;
+    private String selection;
 
     @ManyToOne
     private Pannels panel;
+
     @ManyToOne
     private Hrs hrs;
+
     @ManyToOne
     private User user;
 }
