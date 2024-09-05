@@ -15,7 +15,8 @@ public class CoursesServiceImpl implements CoursesService {
     @Autowired
     CoursesRepository coursesRepository;
     @Override
-    public List<Courses> getCourses() {
+    public List<Courses> getCourses(){
+
         return coursesRepository.findAll();
     }
 

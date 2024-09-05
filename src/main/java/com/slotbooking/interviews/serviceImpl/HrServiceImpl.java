@@ -3,6 +3,7 @@ package com.slotbooking.interviews.serviceImpl;
 import com.slotbooking.interviews.dto.HrsDto;
 import com.slotbooking.interviews.entity.Hrs;
 import com.slotbooking.interviews.entity.Pannels;
+import com.slotbooking.interviews.exception.UsedNotFoundException;
 import com.slotbooking.interviews.repository.HrsRepository;
 import com.slotbooking.interviews.repository.PannelsRepository;
 import com.slotbooking.interviews.service.HrServices;
@@ -49,7 +50,7 @@ public class HrServiceImpl implements HrServices {
             pannelsRepository.save(pn);
         }
 */
-        return hrsRepository.findByName(hrs.getName()).get();
+        return hrsRepository.findByName(hrs.getName()).orElseThrow(()-> new UsedNotFoundException("hr is not present"));
 
     }
 }

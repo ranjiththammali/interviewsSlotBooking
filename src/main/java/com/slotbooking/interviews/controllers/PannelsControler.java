@@ -39,6 +39,8 @@ public class PannelsControler {
 
     @PutMapping("/pannels/status")
     public ResponseEntity<?> pannelsUpdateStatus(@Valid @RequestBody PannelsDto pannels) {
+
+
         Slot savedPannels = pannelsService.pannelsUpdateStatus(pannels);
         return new ResponseEntity<>(savedPannels, HttpStatus.CREATED);
     }

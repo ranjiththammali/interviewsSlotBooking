@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,9 +22,10 @@ public class CoursesController {
     }
 
     @GetMapping("/courses")
-    public ResponseEntity<List<Courses>> getCourses() {
-        List<Courses> courses = coursesService.getCourses();
-        return ResponseEntity.ok(courses);
+    public ResponseEntity<List<Courses>> getCourses()  {
+
+            List<Courses> courses = coursesService.getCourses();
+            return ResponseEntity.ok(courses);
     }
 
     @PostMapping("/courses")
